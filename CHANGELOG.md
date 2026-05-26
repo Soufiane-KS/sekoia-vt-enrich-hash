@@ -30,3 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Module configuration: switched `VtenrichhashModuleConfiguration` to Pydantic v2 so the SDK's `model_validate` call succeeds on the Sekoia runtime.
+
+## 2026-05-26 - 0.1.4
+
+### Fixed
+
+- Action arguments/results: switched to Pydantic v2 to match the platform SDK's `validate_call` (the v1 models tripped `BaseModel.validate() takes 2 positional arguments but 3 were given`).

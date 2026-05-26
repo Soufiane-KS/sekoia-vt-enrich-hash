@@ -1,4 +1,4 @@
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 from sekoia_automation.action import Action
 import requests
 
