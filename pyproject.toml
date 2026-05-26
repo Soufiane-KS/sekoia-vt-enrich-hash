@@ -1,48 +1,40 @@
-[project]
-name = "vtenrichhash-automation-module"
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "Automation Module for VTEnrichHash"
+description = "Enrich a file hash (MD5/SHA1/SHA256) via VirusTotal v3 API"
 version = "0.0"
-description = ""
 authors = []
-requires-python = ">=3.11,<4"
+package-mode = false
 
-dependencies = [
-    "sekoia-automation-sdk"
-]
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+sekoia-automation-sdk = "^1.13.0"
+requests = "*"
 
-[project.dependency-group.dev]
+[tool.poetry.group.dev.dependencies]
 pytest = "*"
 pytest-cov = "*"
-requests = "*"
 requests-mock = "*"
-
-[build-system]
-requires = ["uv_build>=0.9.7,<1.0.0"]
-build-backend = "uv_build"
-
-[tool.uv]
-package = false
 
 [tool.black]
 line-length = 119
-target-version = ['py311']
-include = '\.pyi?$'
+target-version = ["py311"]
+include = "\\.pyi?$"
 
 [tool.isort]
 profile = "black"
 line_length = 119
 
 [tool.coverage.run]
-omit = [
-    "tests/*",
-    "main.py",
-]
+omit = ["tests/*", "main.py"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-testpaths = [
-    "tests",
-]
-addopts = '''
+testpaths = ["tests"]
+addopts = """
   --strict-markers
   --tb=short
   --cov=vtenrichhash_modules
@@ -52,4 +44,4 @@ addopts = '''
   --cov-report=term-missing:skip-covered
   --cov-fail-under=5
   --capture=sys
-'''
+"""

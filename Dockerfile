@@ -1,25 +1,16 @@
-FROM python:3.11-slim-bookworm
+FROM python:3.11
 
-# Install uv from astral/uv image
-COPY --from=docker.io/astral/uv:python3.11-trixie /uv /uvx /bin/
-
-# Create the non-root user
-RUN useradd -ms /bin/bash sekoiaio-runtime
-
-# Set working directory
 WORKDIR /app
 
-# Copy dependency files first
-COPY pyproject.toml uv.lock ./
+RUN pip install poetry
 
 # Install dependencies
-RUN uv sync --frozen --no-install-project --no-dev --compile-bytecode
+COPY poetry.lock pyproject.toml /app/
+RUN poetry config virtualenvs.create false && poetry install --only main
 
-# Copy application source
 COPY . .
 
-# Switch to non-root user
+RUN useradd -ms /bin/bash sekoiaio-runtime
 USER sekoiaio-runtime
 
-# Set the entrypoint
 ENTRYPOINT [ "python", "./main.py" ]
