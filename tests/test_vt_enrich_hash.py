@@ -2,7 +2,6 @@ import requests_mock
 
 from vtenrichhash_modules import VtenrichhashModule
 from vtenrichhash_modules.action_vt_enrich_hash import VTEnrichHashAction
-from vtenrichhash_modules.models import VtenrichhashModuleConfiguration
 
 
 FAKE_API_KEY = "0123456789abcdef" * 4
@@ -13,7 +12,7 @@ VT_URL = f"https://www.virustotal.com/api/v3/files/{FAKE_HASH}"
 def _make_action() -> VTEnrichHashAction:
     """Build an action wired to a module with a fake API key."""
     module = VtenrichhashModule()
-    module.configuration = VtenrichhashModuleConfiguration(apikey=FAKE_API_KEY)
+    module.configuration = {"apikey": FAKE_API_KEY}
     return VTEnrichHashAction(module=module)
 
 
