@@ -1,0 +1,25 @@
+{
+  "configuration": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "VTEnrichHash Configuration",
+    "type": "object",
+    "properties": {
+      "apikey": {
+        "type": "string",
+        "description": "VirusTotal API key (v3)"
+      }
+    },
+    "required": [
+      "apikey"
+    ],
+    "secrets": [
+      "apikey"
+    ]
+  },
+  "description": "Enrich file hashes via VirusTotal v3 API",
+  "name": "VTEnrichHash",
+  "slug": "vtenrichhash",
+  "categories": [],
+  "uuid": "047b7d10-b0e6-43e0-a0c4-2034afe7b4e0",
+  "version": "0.1.0"
+}

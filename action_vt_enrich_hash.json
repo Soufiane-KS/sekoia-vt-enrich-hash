@@ -1,0 +1,50 @@
+{
+  "name": "VT Enrich Hash",
+  "description": "Enrich a file hash (MD5/SHA1/SHA256) via VirusTotal v3 API. Returns a curated verdict, detection score, list of malicious vendors, and a permalink.",
+  "uuid": "5c8a1f6b-2d7e-4e9a-9b3a-7f4c2e1d8a90",
+  "slug": "vt_enrich_hash",
+  "docker_parameters": "vt_enrich_hash",
+  "arguments": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Arguments",
+    "type": "object",
+    "properties": {
+      "hash": {
+        "type": "string",
+        "description": "The file hash to look up (MD5, SHA1, or SHA256)"
+      }
+    },
+    "required": [
+      "hash"
+    ]
+  },
+  "results": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Results",
+    "type": "object",
+    "properties": {
+      "verdict": {
+        "type": "string",
+        "description": "One of: malicious, undetected, unknown"
+      },
+      "score": {
+        "type": "string",
+        "description": "Detection ratio in the form 'malicious_count/total_engines'"
+      },
+      "malicious_vendors": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "List of antivirus vendors that flagged the hash as malicious"
+      },
+      "permalink": {
+        "type": "string",
+        "description": "Link to the VirusTotal GUI report for this hash"
+      }
+    }
+  },
+  "outputs": {
+    "malicious": "At least one antivirus vendor flagged the hash as malicious",
+    "undetected": "VirusTotal knows the hash but no vendor flagged it",
+    "unknown": "VirusTotal has never seen this hash"
+  }
+}
