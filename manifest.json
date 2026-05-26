@@ -17,9 +17,9 @@
     ]
   },
   "description": "Enrich file hashes via VirusTotal v3 API",
-  "name": "VTEnrichHash",
+  "name": "SK-VTEnrichHash",
   "slug": "vtenrichhash",
   "categories": [],
   "uuid": "047b7d10-b0e6-43e0-a0c4-2034afe7b4e0",
-  "version": "0.1.1"
+  "version": "0.1.2"
 }
